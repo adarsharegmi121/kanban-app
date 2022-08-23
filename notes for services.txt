@@ -1,0 +1,7 @@
+user_service 
+  >>for user crud operations only  and 
+  >> Remainging login and logout operations
+
+JWT_service
+  >> for Json web token authentication (token generated will maintain session in client 
+     side instead of storing in server side)
