@@ -3,7 +3,6 @@ from .models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
-    kanban_group = serializers.StringRelatedField(many=True)
     class Meta:
         model = User
         fields = [
@@ -13,5 +12,4 @@ class UserSerializer(serializers.ModelSerializer):
             "password",
             "email_id",
             "mobile_number",
-            "kanban_group"
         ]

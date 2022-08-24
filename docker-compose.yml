@@ -18,7 +18,7 @@ services:
     volumes:
       - .:/app # mount point
     ports:
-      - 8000:8001 # host:container
+      - 8000:8002 # host:container
     env_file:
       - ./.env.dev
     depends_on:

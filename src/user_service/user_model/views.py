@@ -1,10 +1,13 @@
 from __future__ import unicode_literals
+from functools import partial
 from user_model.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from user_model.serializers import UserSerializer
 from user_login.decorator import authorize
+from kanban_user.models import KanbanUser
+from kanban_user.serializers import KanbanUserSerializer
 
 
 class UserApiView(APIView):
@@ -29,10 +32,20 @@ class UserApiView(APIView):
             "mobile_number": request.data.get("mobile_number"),
             "password": request.data.get("password"),
             "confirm_password": request.data.get("confirm_password"),
+            "kanban_user":request.data.get('kanban_user')
         }
         serializer = UserSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
+            k_user = KanbanUser.objects.get(id=data.get('kanban_user'))
+            kanban_serailizer = KanbanUserSerializer(instance=k_user, 
+                data= {"users":[data.get('kanban_user')]}, partial=True)
+            if kanban_serailizer.is_valid():
+                print(dict(kanban_serailizer.validated_data))
+                print('valid .....................>>>>>>')
+                kanban_serailizer.save()
+                print(kanban_serailizer.data)
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
