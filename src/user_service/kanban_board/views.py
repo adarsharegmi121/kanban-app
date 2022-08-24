@@ -23,9 +23,9 @@ class KanbanBoardAPIView(APIView):
         """
         data = {
             "name": request.data.get("name"),
-            "date_created": request.data.get("date_created"),
             "description": request.data.get("description"),
             "nickname": request.data.get("nickname"),
+            "kanban_group": request.data.get("kanban_group"),
         }
         serializer = KanbanBoardSerializer(data=data)
         if serializer.is_valid():
@@ -35,7 +35,7 @@ class KanbanBoardAPIView(APIView):
 
 
 class KanbanBoardDetailView(APIView):
-    @authorize
+    @authorize()
     def get(self, request, board_id, *args, **kwargs):
         """
         list the specific board
@@ -49,7 +49,7 @@ class KanbanBoardDetailView(APIView):
                 {"res": "no board found"}, status=status.HTTP_400_BAD_REQUEST
             )
 
-    @authorize
+    @authorize()
     def put(self, request, board_id, *args, **kwargs):
         """
         update the kanban board details
@@ -66,6 +66,7 @@ class KanbanBoardDetailView(APIView):
             "date_created": request.data.get("date_created"),
             "description": request.data.get("description"),
             "nickname": request.data.get("nickname"),
+            "kanban_group": request.data.get("kanban_group"),
         }
         serializer = KanbanBoardSerializer(instance=board_instance)
         if serializer.is_valid():
@@ -73,7 +74,7 @@ class KanbanBoardDetailView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    @authorize
+    @authorize()
     def delete(self, request, board_id, *args, **kwargs):
         """
         delete the board

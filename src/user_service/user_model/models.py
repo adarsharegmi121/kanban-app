@@ -9,6 +9,5 @@ class User(models.Model):
     email_id = models.EmailField()
     mobile_number = models.CharField(max_length=12)
 
-
 def __str__(self):
     return "%s %s %s " % (self.first_name, self.last_name, self.email_id)

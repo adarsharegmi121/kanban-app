@@ -30,13 +30,13 @@ class KanbanUserAPIView(APIView):
 
 
 class KanbanUserDetailView(APIView):
-    @authorize
-    def get(self, request, board_id, *args, **kwargs):
+    @authorize()
+    def get(self, request, group_id, *args, **kwargs):
         """
         list the specific board
         """
         try:
-            board = KanbanUser.objects.get(id=board_id)
+            board = KanbanUser.objects.get(id=group_id)
             serializer = KanbanUserSerializer(board)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except KanbanUser.DoesNotExist:
@@ -44,12 +44,12 @@ class KanbanUserDetailView(APIView):
                 {"res": "no board found"}, status=status.HTTP_400_BAD_REQUEST
             )
 
-    @authorize
-    def put(self, request, board_id, *args, **kwargs):
+    @authorize()
+    def put(self, request, group_id, *args, **kwargs):
         """
         update the kanban board details
         """
-        board_instance = KanbanUser.objects.get(id=board_id)
+        board_instance = KanbanUser.objects.get(id=group_id)
         if not board_instance:
             return Response(
                 {"res": "no board found for the board id"},
@@ -68,12 +68,12 @@ class KanbanUserDetailView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    @authorize
-    def delete(self, request, board_id, *args, **kwargs):
+    @authorize()
+    def delete(self, request, group_id, *args, **kwargs):
         """
         delete the board
         """
-        board_instance = KanbanUser.objects.get(id=board_id)
+        board_instance = KanbanUser.objects.get(id=group_id)
         if not board_instance:
             return Response(
                 {"res": "object with board id not found"},

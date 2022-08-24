@@ -1,13 +1,14 @@
 from tkinter import CASCADE
 from django.db import models
-from kanban_board.models import KanbanBoard
+from user_model.models import User
 
 # Create your models here.
 class KanbanUser(models.Model):
     group_name = models.CharField(max_length=50)
     date_created = models.DateTimeField(auto_created=True)
-    # for kanban group and board relationship (M2M)
-    board = models.ManyToManyField(KanbanBoard, blank=True, related_name="board")
+    users = models.ManyToManyField(User, blank=True, related_name="board")
+    # for kanban group and users relationship (M2M)
+
 
     class Meta:
         ordering = ["date_created", "group_name"]
