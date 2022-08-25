@@ -25,7 +25,7 @@ class KanbanLaneAPIView(APIView):
         """
         data = {
             "lane_name": request.data.get("lane_name"),
-            "lane": request.data.get("lane")
+            "board": request.data.get("board")
         }
         serializer = KanbanLaneSerializer(data=data)
         if serializer.is_valid():
