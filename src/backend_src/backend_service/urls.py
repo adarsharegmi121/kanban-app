@@ -19,6 +19,8 @@ from user_model import urls as user_model_urls
 from user_login import urls as user_login_urls
 from kanban_board import urls as kanban_board_urls
 from kanban_user import urls as kanban_user_urls
+from kanban_lane import urls as kanban_lane_urls
+from kanban_task import urls as kanban_task_urls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -27,4 +29,6 @@ urlpatterns = [
     path("user_login/", include(user_login_urls)),
     path("kanban_board/", include(kanban_board_urls)),
     path("kanban_user/", include(kanban_user_urls)),
+    path("kanban_task/", include(kanban_task_urls)),
+    path("kanban_lane/", include(kanban_lane_urls)),
 ]
