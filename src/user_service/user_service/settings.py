@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "kanban_board",
     "kanban_user",
     "kanban_lane",
+    "kanban_task",
 ]
 
 MIDDLEWARE = [
