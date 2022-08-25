@@ -54,17 +54,22 @@ class KanbanLaneDetailView(APIView):
         """
         update the kanban lane details
         """
-        lane_instance = KanbanLane.objects.get(id=lane_id)
-        if not lane_instance:
+        lane_instance=KanbanLane()
+        try :
+            lane_instance = KanbanLane.objects.get(id=lane_id)
+        except Exception as e :
             return Response(
                 {"res": "no lane found for the lane id"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
-
-        data = {
-            "lane_name": request.data.get("lane_name"),
-            "board": request.data.get("board")
-        }
+        data = {}
+        try:
+            data = {
+                "lane_name": request.data.get("lane_name"),
+                "board": request.data.get("board")
+            }
+        except Exception as e:
+            return Response({"error":"invalid data format"}, status=status.HTTP_400_BAD_REQUEST)
         serializer = KanbanLaneSerializer(instance=lane_instance, data=data)
         if serializer.is_valid():
             serializer.save()
@@ -76,11 +81,12 @@ class KanbanLaneDetailView(APIView):
         """
         delete the lane
         """
-        lane_instance = KanbanLane.objects.get(id=lane_id)
-        if not lane_instance:
+        try :
+            lane_instance = KanbanLane.objects.get(id=lane_id)
+            lane_instance.delete()
+        except Exception as e :
             return Response(
-                {"res": "object with lane id not found"},
+                {"res": "no lane found for the lane id"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
-        lane_instance.delete()
         return Response({"res": "lane is deleted"}, status=status.HTTP_200_OK)

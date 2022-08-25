@@ -32,7 +32,8 @@ class UserApiView(APIView):
                 )
                 if not isinstance(token, str):
                     resp["token"] = token.decode("utf-8") 
-                resp['token'] = token
+                else:
+                    resp['token'] = token
                 resp["status"] = "Success"
                 resp["status_code"] = "200"
                 resp["message"] = "User login successfully"
