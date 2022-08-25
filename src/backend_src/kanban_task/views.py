@@ -55,19 +55,28 @@ class KanbanTaskDetailView(APIView):
         """
         update the kanban task details
         """
-        task_instance = KanbanTask.objects.get(id=task_id)
-        if not task_instance:
+        task_instance = KanbanTask()
+        try:
+            task_instance = KanbanTask.objects.get(id=task_id)
+        
+        except Exception as e:
             return Response(
                 {"res": "no task found for the task id"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
-
-        data = {
+        data = {}
+        try:
+            data = {
             "title": request.data.get("title"),
             "description": request.data.get("description"),
             "status": request.data.get("status"),
             "lane": request.data.get("lane"),
-        }
+            }
+        except Exception as e:
+            return Response(
+                {"res": "invalid data format"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
         serializer = KanbanTaskSerializer(instance=task_instance, data=data)
         if serializer.is_valid():
             serializer.save()
@@ -79,10 +88,12 @@ class KanbanTaskDetailView(APIView):
         """
         delete the task
         """
-        task_instance = KanbanTask.objects.get(id=task_id)
-        if not task_instance:
+        task_instance = KanbanTask()
+        try:
+            task_instance = KanbanTask.objects.get(id=task_id)
+        except Exception as e:
             return Response(
-                {"res": "object with task id not found"},
+                {"res": "no task found for the task id"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         task_instance.delete()
