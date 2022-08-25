@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "user_model",
     "kanban_board",
     "kanban_user",
+    "kanban_lane",
 ]
 
 MIDDLEWARE = [
