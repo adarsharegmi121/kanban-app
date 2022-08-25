@@ -13,7 +13,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: postgres
-  user_service:
+  backend_service:
     build: . # relative to docker-compose
     volumes:
       - .:/app # mount point

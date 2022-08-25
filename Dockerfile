@@ -8,7 +8,7 @@ RUN pip install --upgrade pip
 RUN pip install -r /tmp/requirements.txt
 
 RUN mkdir -p /src
-COPY src/user_service /src
+COPY src/backend_src /src
 
 WORKDIR /src/
 
