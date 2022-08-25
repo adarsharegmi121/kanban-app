@@ -70,7 +70,7 @@ class KanbanBoardDetailView(APIView):
             "nickname": request.data.get("nickname"),
             "kanban_group": request.data.get("kanban_group"),
         }
-        serializer = KanbanBoardSerializer(instance=board_instance)
+        serializer = KanbanBoardSerializer(instance=board_instance, data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)

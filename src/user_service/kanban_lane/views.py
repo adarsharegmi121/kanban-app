@@ -65,7 +65,7 @@ class KanbanLaneDetailView(APIView):
             "lane_name": request.data.get("lane_name"),
             "board": request.data.get("board")
         }
-        serializer = KanbanLaneSerializer(instance=lane_instance)
+        serializer = KanbanLaneSerializer(instance=lane_instance, data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
