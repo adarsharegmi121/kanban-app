@@ -1,13 +1,10 @@
 from __future__ import unicode_literals
-from functools import partial
 from user_model.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from user_model.serializers import UserSerializer
 from user_login.decorator import authorize
-from kanban_user.models import KanbanUser
-from kanban_user.serializers import KanbanUserSerializer
 
 
 class UserApiView(APIView):
@@ -19,7 +16,8 @@ class UserApiView(APIView):
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
+    
+    @authorize()
     def post(self, request, *args, **kwargs):
         """
         register user if the statements are true
@@ -79,7 +77,8 @@ class UserDetailView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    
+    @authorize()
     def delete(self, request, username, *args, **kwargs):
         """
         deletes the user

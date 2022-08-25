@@ -9,6 +9,7 @@ from user_login.decorator import authorize
 
 class KanbanBoardAPIView(APIView):
     # list all the boards
+    @authorize()
     def get(self, request, *args, **kwargs):
         """
         list boards
@@ -16,7 +17,8 @@ class KanbanBoardAPIView(APIView):
         boards = KanbanBoard.objects.all()
         serializer = KanbanBoardSerializer(boards, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
+    
+    @authorize()
     def post(self, request, *args, **kwargs):
         """
         register the kanban KanbanBoard
