@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "371b5cc5-90c7-4ab4-95a9-4a5f0006bf53",
+		"name": "kanban_task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22829018"
+	},
+	"item": [
+		{
+			"name": "get all kanban tasks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{user_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:8000/kanban_lane/api/lane",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"kanban_lane",
+						"api",
+						"lane"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create kanban task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{user_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "kanban_develop_backend",
+							"type": "text"
+						},
+						{
+							"key": "nickname",
+							"value": "kanu",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "the implementation of kanban methodology",
+							"type": "text"
+						},
+						{
+							"key": "kanban_group",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/kanban_lane/api/lane/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"kanban_lane",
+						"api",
+						"lane",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update kanban task",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{user_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "kanban_develop_backend",
+							"type": "text"
+						},
+						{
+							"key": "nickname",
+							"value": "kanu",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "the implementation of kanban methodology",
+							"type": "text"
+						},
+						{
+							"key": "kanban_group",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/kanban_lane/api/lane/1/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"kanban_lane",
+						"api",
+						"lane",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete kanban task",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{user_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "first_name",
+							"value": "addy",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "regmi",
+							"type": "text"
+						},
+						{
+							"key": "email_id",
+							"value": "addy12sd3@gmail.comss",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "yet to know",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "novalidation",
+							"type": "text"
+						},
+						{
+							"key": "confirm_password",
+							"value": "novalidation",
+							"type": "text"
+						},
+						{
+							"key": "mobile_number",
+							"value": "1234567890",
+							"type": "text"
+						},
+						{
+							"key": "kanban_user",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/kanban_lane/api/lane/1/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"kanban_lane",
+						"api",
+						"lane",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

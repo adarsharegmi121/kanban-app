@@ -1,0 +1,2 @@
+create a environment value and assign the value of user_token based upon the response of login request. 
+the code is in login request "test" tab
