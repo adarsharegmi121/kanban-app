@@ -2,12 +2,12 @@ from __future__ import unicode_literals
 import json
 import jwt
 from user_model.models import User
-import user_service
+import backend_service
 from django.http import HttpResponse
 from rest_framework.views import APIView
 
-KEY = user_service.settings.SECRET_KEY
-TOKEN_LIFE = user_service.settings.TOKEN_LIFE
+KEY = backend_service.settings.SECRET_KEY
+TOKEN_LIFE = backend_service.settings.TOKEN_LIFE
 # the function for validating the user
 def user_validation(uname, password):
     user_data = User.objects.get(email_id=uname, password=password)

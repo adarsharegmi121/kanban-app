@@ -2,7 +2,7 @@ from functools import wraps
 import json
 import jwt
 from django.http import HttpResponse
-from user_service.settings import SECRET_KEY
+from backend_service.settings import SECRET_KEY
 
 key = SECRET_KEY
 
