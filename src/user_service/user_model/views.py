@@ -37,15 +37,6 @@ class UserApiView(APIView):
         serializer = UserSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            k_user = KanbanUser.objects.get(id=data.get('kanban_user'))
-            kanban_serailizer = KanbanUserSerializer(instance=k_user, 
-                data= {"users":[data.get('kanban_user')]}, partial=True)
-            if kanban_serailizer.is_valid():
-                print(dict(kanban_serailizer.validated_data))
-                print('valid .....................>>>>>>')
-                kanban_serailizer.save()
-                print(kanban_serailizer.data)
-
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

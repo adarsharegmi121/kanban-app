@@ -21,7 +21,10 @@ class KanbanUserAPIView(APIView):
         """
         register the kanban KanbanUser
         """
-        data = {"group_name": request.data.get("group_name")}
+        data = {"group_name": request.data.get("group_name"),
+                "users":request.data.get('users'),
+                "date_created":request.data.get('date_created')}
+        print("data >>>>>>>>>>" ,data)
         serializer = KanbanUserSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
@@ -56,13 +59,10 @@ class KanbanUserDetailView(APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        data = {
-            "name": request.data.get("name"),
-            "date_created": request.data.get("date_created"),
-            "description": request.data.get("description"),
-            "nickname": request.data.get("nickname"),
-        }
-        serializer = KanbanUserSerializer(instance=board_instance)
+        data = {"group_name": request.data.get("group_name"),
+                "users":request.data.get('users'),
+                "date_created":request.data.get('date_created')}
+        serializer = KanbanUserSerializer(instance=board_instance, data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
