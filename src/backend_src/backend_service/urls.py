@@ -21,8 +21,9 @@ from kanban_board import urls as kanban_board_urls
 from kanban_user import urls as kanban_user_urls
 from kanban_lane import urls as kanban_lane_urls
 from kanban_task import urls as kanban_task_urls
-
+from backend_service.views import show_frontend
 urlpatterns = [
+    path('',show_frontend),
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
     path("user_model/", include(user_model_urls)),
