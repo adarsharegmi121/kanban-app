@@ -1,18 +1,17 @@
-var app = app || {};
-app.KanbanAPIView = Backbone.View.extend({
+var KanbanAPIView = Backbone.View.extend({
     model: app.KanbanBoard,
     el: $('#form-div'),
     template: _.template("<div>Hello world</div>"),
-    intialize: function(){
+    intialize: function () {
         this.render();
     },
     render: function () {
         this.$el.html(this.template());
     },
-    events:{
+    events: {
         'click #submit-form': 'saveData'
     },
-    saveData: function(){
+    saveData: function () {
         console.log('see');
         alert('data is entered');
     }
